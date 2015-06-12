@@ -2,7 +2,7 @@
 
 # Start a new tmux session with texas inside.
 if [ -z "$TMUX" ]; then
-    tmux new-session 'LAUNCH_TEXAS=1 zsh'
+    tmux -L texas new-session 'LAUNCH_TEXAS=1 zsh'
     return
 fi
 
