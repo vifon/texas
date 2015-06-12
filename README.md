@@ -15,13 +15,8 @@ Copy `texas.py` to `~/.config/ranger/plugins`.
 **zsh**
 
 Copy `texas.zsh` to your `$fpath`, rename it to just `texas` (remove
-the `.zsh` suffix) and add these lines to your `.zshrc`:
-
-    autoload -U texas
-    if [ -n "$LAUNCH_TEXAS" ]; then
-        unset LAUNCH_TEXAS
-        texas
-    fi
+the `.zsh` suffix) and source the `texas_init.zsh` file from your
+`zshrc` (add a line `source /path/to/texas_init.zsh`).
 
 **bash**
 
