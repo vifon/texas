@@ -30,7 +30,11 @@ trap texas--ranger-to-sh-sync USR1
 
 
 texas--switch-to-ranger() {
-    tmux select-pane -t :.+
+    if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
+        tmux select-pane -t :.+
+    else
+        tmux next-window
+    fi
 }
 zle -N texas--switch-to-ranger
 bindkey "^o" texas--switch-to-ranger

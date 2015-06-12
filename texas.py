@@ -30,7 +30,7 @@ def hook_init(fm):
             sh_to_ranger_sync)
 
         # Bind to C-o
-        fm.execute_console("map <C-o> shell -s tmux select-pane -t :.+")
+        fm.execute_console("""map <C-o> shell -s if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then tmux select-pane -t :.+; else tmux next-window; fi""")
 
         # Close the associated shell along with the whole texas on
         # ranger exit.
