@@ -1,12 +1,16 @@
 texas
 =====
 
-TODO
+`texas` creates a shell session synchronized with a [ranger][1]
+session. Whenever ones current directory changes, so does the other's.
+It was created as an alternative to the Midnight Commander's feature
+known as `ShowCommandLine` (the one bound to <kbd>ctrl-o</kbd>).
 
 INSTALLATION
 ------------
 
-TODO
+You'll need to install a `ranger` plugin and one of the shell plugins
+(only `zsh` is fully supported now, `bash` has a partial support).
 
 **ranger** (mandatory)
 
@@ -20,14 +24,49 @@ the `.zsh` suffix) and source the `texas_init.zsh` file from your
 
 **bash**
 
-Not supported yet.
+Source `texas.bash` from your `bashrc` (add a line `source
+/path/to/texas.bash`).
 
-PLANNED FEATURES
-----------------
+DEPENDENCIES
+------------
 
-- Bash support
-- a proper readme
-- an option to run in a separate `tmux` window
+- `ranger`
+- `tmux`
+- recommended: `zsh`
+
+USAGE
+-----
+
+`texas` is using [tmux][2] internally. It is not necessary for the
+user to know how to use `tmux` but thay will certainly benefit from
+it.
+
+[2]: http://tmux.github.io/
+
+**Startup**
+
+`texas` may be started either from inside the existing `tmux` session
+or from a regular shell session. In the first case, it will use the
+current `tmux` window. In the second one, it will create a new `tmux`
+session **in the separate tmux daemon (named "texas")**.
+
+**Switching windows**
+
+If you're using `zsh`, you may use <kbd>ctrl-o</kbd> to switch between
+windows, as long as there is no other program running in the shell
+window (for example it will not work if you've got Vim running there).
+The `tmux` keys for switching windows will work regardless of that
+(please refer to the `tmux` manual). <kbd>ctrl-o</kbd> has one
+advantage (other than being shorter): it will work even if you move
+one of the `tmux` panes to a separate `tmux` window.
+
+If you're using `bash`, <kbd>ctrl-o</kbd> works only in `ranger` but
+not in the `bash` pane. It may change in the future.
+
+SEE ALSO
+--------
+
+`ranger(1)`, `tmux(1)`
 
 AUTHOR
 ------
