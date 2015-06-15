@@ -2,9 +2,10 @@ texas
 =====
 
 `texas` creates a shell session synchronized with a [ranger][1]
-session. Whenever ones current directory changes, so does the other's.
-It was created as an alternative to the Midnight Commander's feature
-known as `ShowCommandLine` (the one bound to <kbd>ctrl-o</kbd>).
+session. Whenever one's current directory changes, so does the
+other's. It was created as an alternative to the Midnight Commander's
+feature known as `ShowCommandLine` (the one bound to
+<kbd>ctrl-o</kbd>).
 
 [1]: https://github.com/hut/ranger
 
