@@ -6,7 +6,7 @@ if [ -z "$TMUX" ]; then
     return
 fi
 
-TEXAS_RANGER_PID=$(tmux split-window -p 30 -b -P -F '#{pane_pid}' "TEXAS_SHELL_PID=$$ ranger")
+TEXAS_RANGER_PID=$(tmux split-window -p 70 -P -F '#{pane_pid}' "TEXAS_SHELL_PID=$$ ranger")
 
 autoload -U add-zsh-hook
 
