@@ -6,6 +6,5 @@ fi
 
 autoload -U texas
 if [ -n "$LAUNCH_TEXAS" ]; then
-    unset LAUNCH_TEXAS
     texas
 fi

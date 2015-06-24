@@ -32,12 +32,20 @@ def hook_init(fm):
         # Bind to C-o
         fm.execute_console("""map <C-o> shell -s if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then tmux select-pane -t :.+; else tmux next-window; fi""")
 
-        # Close the associated shell along with the whole texas on
-        # ranger exit.
-        import atexit
-        def texas_cleanup():
-            os.kill(texas_shell_pid, signal.SIGHUP)
-        atexit.register(texas_cleanup)
+        # If a new tmux session needed to be created i.e. texas wasn't
+        # started from inside of tmux.
+        if int(os.environ['LAUNCH_TEXAS']):
+            # Close the associated shell along with the whole texas on
+            # ranger exit unless it was started inside of an existing
+            # tmux session.
+            import atexit
+            def texas_cleanup():
+                os.kill(texas_shell_pid, signal.SIGHUP)
+            atexit.register(texas_cleanup)
+        # Prevent the child processes from inheriting this env var so
+        # that the spawned shells will not start nested texases
+        # immediately.
+        del os.environ['LAUNCH_TEXAS']
     except KeyError:
         # The texas shell is not running.
         pass
