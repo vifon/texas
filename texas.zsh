@@ -14,7 +14,18 @@ unset LAUNCH_TEXAS
 autoload -U add-zsh-hook
 
 texas--sh-to-ranger-sync() {
-    kill -USR1 $TEXAS_RANGER_PID
+    if ! kill -USR1 $TEXAS_RANGER_PID 2> /dev/null; then
+        # ranger is no longer running, let's clean up the zsh state.
+
+        # The ranger's PID is no longer needed.
+        unset TEXAS_RANGER_PID
+
+        # TODO: save the original binding instead of hardcoding the assumed default.
+        bindkey "^o" accept-line-and-down-history
+
+        # Remove the hook because there is no ranger to communicate with.
+        chpwd_functions=${chpwd_functions:#texas--sh-to-ranger-sync}
+    fi
 }
 add-zsh-hook chpwd texas--sh-to-ranger-sync
 

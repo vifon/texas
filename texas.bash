@@ -20,7 +20,15 @@ texas()
     cd()
     {
         builtin cd "$@"
-        kill -USR1 $TEXAS_RANGER_PID
+        if ! kill -USR1 $TEXAS_RANGER_PID 2> /dev/null; then
+            # ranger is no longer running, let's clean up the bash state.
+
+            # The ranger's PID is no longer needed.
+            unset TEXAS_RANGER_PID
+
+            # Remove the hook because there is no ranger to communicate with.
+            unset -f cd
+        fi
     }
 
     texas--exit-cleanup() {
