@@ -41,7 +41,7 @@ USAGE
 -----
 
 `texas` is using [tmux][2] internally. It is not necessary for the
-user to know how to use `tmux` but thay will certainly benefit from
+user to know how to use `tmux` but they will certainly benefit from
 it.
 
 [2]: http://tmux.github.io/
@@ -52,6 +52,17 @@ it.
 or from a regular shell session. In the first case, it will use the
 current `tmux` window. In the second one, it will create a new `tmux`
 session **in the separate tmux daemon (named "texas")**.
+
+If you launch `texas` in an existing `tmux` session, you may close
+`ranger` and the shell should still be running as before launching
+`texas`.
+
+If you launch `texas` in a new `tmux` session (i.e. not from inside of
+an existing `tmux` session), the lifetimes of `ranger` and the shell
+are bound together: closing one will close the other. They may be
+considered a single application in that regard. Of course, if you open
+some more `tmux` windows (which `texas` by all means does *not*
+discourage), they will not be closed.
 
 **Switching windows**
 
