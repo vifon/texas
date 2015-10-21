@@ -35,6 +35,11 @@ texas--exit-cleanup() {
 add-zsh-hook zshexit texas--exit-cleanup
 
 texas--ranger-to-sh-sync() {
+    # This trap may be called either during a command execution or
+    # not. If it's the latter, zle will be active and we can change
+    # the cwd safely. If a command is being executed, do nothing. The
+    # cwd will be updated on the next signal from ranger after the
+    # command finishes its execution.
     if zle; then
         cd -qP /proc/$TEXAS_RANGER_PID/cwd
         zle reset-prompt
