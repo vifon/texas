@@ -1,12 +1,24 @@
 import ranger.api
+from ranger.api.commands import *
 
 import os
 import os.path
 import signal
 
+class texas_send_selection(Command):
+    def execute(self):
+        texas_shell_pid = int(os.environ['TEXAS_SHELL_PID'])
+        with open("/tmp/texas-selection.{}".format(texas_shell_pid), 'w') as selection:
+            for path in self.args[1:]:
+                print(path, file=selection)
+        from os import kill
+        kill(texas_shell_pid, signal.SIGUSR2)
+
 old_hook_init = ranger.api.hook_init
 def hook_init(fm):
     try:
+        fm.commands.commands['texas_send_selection'] = texas_send_selection
+
         # Get the PID of the associated shell.
         texas_shell_pid = int(os.environ['TEXAS_SHELL_PID'])
 

@@ -42,6 +42,18 @@ texas--ranger-to-sh-sync() {
 }
 trap texas--ranger-to-sh-sync USR1
 
+texas--ranger-to-sh-paths() {
+    if zle; then
+        local SELECTION_FILE=/tmp/texas-selection.$$
+        local RANGER_SELECTION
+        while read RANGER_SELECTION; do
+            LBUFFER="${LBUFFER%% #} ${(q)RANGER_SELECTION}"
+        done < $SELECTION_FILE
+        rm -f $SELECTION_FILE
+    fi
+}
+trap texas--ranger-to-sh-paths USR2
+
 
 texas--switch-to-ranger() {
     if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
