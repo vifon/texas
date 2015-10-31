@@ -3,8 +3,8 @@ texas
 
 `texas` creates a shell session synchronized with a [ranger][1]
 session. Whenever one's current directory changes, so does the
-other's. It was created as an alternative to the Midnight Commander's
-feature known as `ShowCommandLine` (the one bound to
+other. It was created as an alternative to a Midnight Commander
+feature known as `ShowCommandLine` (which is bound to
 <kbd>ctrl-o</kbd>).
 
 [1]: https://github.com/hut/ranger
@@ -12,23 +12,67 @@ feature known as `ShowCommandLine` (the one bound to
 INSTALLATION
 ------------
 
-You'll need to install a `ranger` plugin and one of the shell plugins
-(only `zsh` is fully supported now, `bash` has a partial support).
+The installation is comprised of two steps: installing a `ranger`
+plugin, and installing a shell plugin (`zsh` has full support while
+`bash` support is partial).
 
-**ranger** (mandatory)
+**Step 1: Install ranger plugin** (mandatory)
 
 Copy `texas.py` to `~/.config/ranger/plugins`.
 
+**Step 2: Install shell plugin**
+
 **zsh**
 
-Copy `texas.zsh` to your `$fpath`, rename it to just `texas` (remove
-the `.zsh` suffix) and source the `texas_init.zsh` file from your
-`zshrc` (add a line `source /path/to/texas_init.zsh`).
+First copy the file `texas.zsh` to your `$fpath` and rename it to just
+`texas` (remove the `.zsh` suffix). After that, source the
+`texas_init.zsh` file by adding the line `source
+/path/to/texas_init.zsh` to your `.zshrc`.
 
 **bash**
 
-Source `texas.bash` from your `bashrc` (add a line `source
-/path/to/texas.bash`).
+Source the `texas.bash` file by adding the line `source
+/path/to/texas.bash` to your `.bashrc`.
+
+
+USAGE
+-----
+
+`texas` uses [tmux][2] internally. Although knowledge of how to use
+`tmux` is not necessary, the user will certainly benefit from it.
+
+[2]: http://tmux.github.io/
+
+**Startup**
+
+`texas` may be started either from inside an existing `tmux` session
+or from a regular shell session. In the first case, it will use the
+current `tmux` window and in the second case it will create a new
+`tmux` session **in a separate tmux daemon automatically named
+"texas"**.
+
+If you launch `texas` from an existing `tmux` session, you may quit
+`ranger` and the shell should still be running just as before
+launching `texas`.
+
+If you launch `texas` outside of an existing `tmux` session, `ranger`
+and the shell are bound together: closing one will close the other and
+in that regard they may be considered as a single application. Of
+course, if you open some more `tmux` windows (which `texas` by all
+means does *not* discourage), they will not be closed.
+
+**Switching windows**
+
+If you're using `zsh`, you may use <kbd>ctrl-o</kbd> to switch between
+windows as long as there is no other program running in the shell
+window (for example, it will not work if you've got Vim running
+there), but the `tmux` keys for switching windows will work regardless
+of that (please refer to the `tmux` manual). <kbd>ctrl-o</kbd> has one
+advantage though (other than being shorter): it will work even if you
+move one of the `tmux` panes to a separate `tmux` window.
+
+If you're using `bash`, <kbd>ctrl-o</kbd> works only in `ranger` but
+not in the `bash` pane. This may change in the future.
 
 DEPENDENCIES
 ------------
@@ -36,46 +80,6 @@ DEPENDENCIES
 - `ranger`
 - `tmux`
 - recommended: `zsh`
-
-USAGE
------
-
-`texas` is using [tmux][2] internally. It is not necessary for the
-user to know how to use `tmux` but they will certainly benefit from
-it.
-
-[2]: http://tmux.github.io/
-
-**Startup**
-
-`texas` may be started either from inside the existing `tmux` session
-or from a regular shell session. In the first case, it will use the
-current `tmux` window. In the second one, it will create a new `tmux`
-session **in the separate tmux daemon (named "texas")**.
-
-If you launch `texas` in an existing `tmux` session, you may close
-`ranger` and the shell should still be running as before launching
-`texas`.
-
-If you launch `texas` in a new `tmux` session (i.e. not from inside of
-an existing `tmux` session), the lifetimes of `ranger` and the shell
-are bound together: closing one will close the other. They may be
-considered a single application in that regard. Of course, if you open
-some more `tmux` windows (which `texas` by all means does *not*
-discourage), they will not be closed.
-
-**Switching windows**
-
-If you're using `zsh`, you may use <kbd>ctrl-o</kbd> to switch between
-windows, as long as there is no other program running in the shell
-window (for example it will not work if you've got Vim running there).
-The `tmux` keys for switching windows will work regardless of that
-(please refer to the `tmux` manual). <kbd>ctrl-o</kbd> has one
-advantage (other than being shorter): it will work even if you move
-one of the `tmux` panes to a separate `tmux` window.
-
-If you're using `bash`, <kbd>ctrl-o</kbd> works only in `ranger` but
-not in the `bash` pane. It may change in the future.
 
 SEE ALSO
 --------
