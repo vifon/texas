@@ -13,7 +13,7 @@ INSTALLATION
 ------------
 
 The installation is comprised of two steps: installing a `ranger`
-plugin, and installing a shell plugin (`zsh` has full support while
+plugin and installing a shell plugin (`zsh` has full support while
 `bash` support is partial).
 
 **Step 1: Install ranger plugin** (mandatory)
