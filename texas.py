@@ -15,6 +15,10 @@ def hook_init(fm):
         def ranger_to_sh_sync(sig):
             try:
                 os.kill(texas_shell_pid, signal.SIGUSR1)
+                if 'TEXAS_BASH' in os.environ:
+                    # Force Bash to refresh the prompt.
+                    # See: https://github.com/Vifon/texas/issues/1
+                    os.kill(texas_shell_pid, signal.SIGINT)
             except OSError:
                 exit(0)
         fm.signal_bind(

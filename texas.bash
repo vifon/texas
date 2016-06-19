@@ -12,7 +12,7 @@ texas()
         return
     fi
 
-    TEXAS_RANGER_PID=$(tmux split-window -p 70 -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
+    TEXAS_RANGER_PID=$(tmux split-window -p 70 -P -F '#{pane_pid}' "TEXAS_BASH=1 LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
 
     # Unset the variable only here because the ranger plugin reacts to it.
     unset LAUNCH_TEXAS
