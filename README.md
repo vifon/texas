@@ -13,14 +13,18 @@ INSTALLATION
 ------------
 
 The installation is comprised of two steps: installing a `ranger`
-plugin and installing a shell plugin (`zsh` has full support while
-`bash` support is partial).
+plugin and installing a shell plugin.
 
 **Step 1: Install ranger plugin** (mandatory)
 
 Copy `texas.py` to `~/.config/ranger/plugins`.
 
 **Step 2: Install shell plugin**
+
+**bash**
+
+Source the `texas.bash` file by adding the line `source
+/path/to/texas.bash` to your `.bashrc`.
 
 **zsh**
 
@@ -29,11 +33,10 @@ First copy the file `texas.zsh` to your `$fpath` and rename it to just
 `texas_init.zsh` file by adding the line `source
 /path/to/texas_init.zsh` to your `.zshrc`.
 
-**bash**
-
-Source the `texas.bash` file by adding the line `source
-/path/to/texas.bash` to your `.bashrc`.
-
+Currently there is no support for the plugin managers such as
+[antigen](https://github.com/zsh-users/antigen) due to a bit tricky
+loading process. If you use them, be sure to load `texas` after
+loading the plugins managed by the manager.
 
 USAGE
 -----
@@ -57,29 +60,38 @@ launching `texas`.
 
 If you launch `texas` outside of an existing `tmux` session, `ranger`
 and the shell are bound together: closing one will close the other and
-in that regard they may be considered as a single application. Of
-course, if you open some more `tmux` windows (which `texas` by all
-means does *not* discourage), they will not be closed.
+in that regard they may be considered as a single application. If you
+open any more `tmux` windows (which `texas` by all means does not
+discourage), they will *not* be closed. Only `ranger` and the
+associated shell will close leaving all the other `tmux` windows
+intact.
 
 **Switching windows**
 
-If you're using `zsh`, you may use <kbd>ctrl-o</kbd> to switch between
-windows as long as there is no other program running in the shell
-window (for example, it will not work if you've got Vim running
-there), but the `tmux` keys for switching windows will work regardless
-of that (please refer to the `tmux` manual). <kbd>ctrl-o</kbd> has one
-advantage though (other than being shorter): it will work even if you
-move one of the `tmux` panes to a separate `tmux` window.
+You may use <kbd>ctrl-o</kbd> to switch between windows as long as
+there is no other program running in the shell window (for example, it
+will not work if you've got Vim running there), but the `tmux` keys
+for switching windows will work regardless of that (please refer to
+the `tmux` manual). <kbd>ctrl-o</kbd> has one advantage though (other
+than being shorter): it will work even if you move one of the `tmux`
+panes to a separate `tmux` window.
 
-If you're using `bash`, <kbd>ctrl-o</kbd> works only in `ranger` but
-not in the `bash` pane. This may change in the future.
+Before `v1.0` it was supported only in `zsh`. Since `v1.0` it works in
+`bash` too.
 
 DEPENDENCIES
 ------------
 
 - `ranger`
 - `tmux`
-- recommended: `zsh`
+- `bash` or `zsh`
+
+KNOWN ISSUES
+------------
+
+If used with `bash`, each time `ranger` changes its current directory
+a new prompt line will be shown in `bash`. It will erase the contents
+of the command line and may be seen as ugly.
 
 SEE ALSO
 --------
@@ -94,7 +106,7 @@ Wojciech 'vifon' Siewierski < wojciech dot siewierski at onet dot pl >
 COPYRIGHT
 ---------
 
-Copyright (C) 2015  Wojciech Siewierski
+Copyright (C) 2015-2016  Wojciech Siewierski
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

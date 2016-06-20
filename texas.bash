@@ -37,8 +37,10 @@ texas()
     trap texas--exit-cleanup EXIT
 
     texas--ranger-to-sh-sync() {
+        # Needs to be immediately followed by SIGINT to update the
+        # prompt. It's handled in the ranger plugin, controlled by the
+        # TEXAS_BASH env variable.
         builtin cd -P /proc/$TEXAS_RANGER_PID/cwd
-        # FIXME: update the prompt
     }
     trap texas--ranger-to-sh-sync USR1
 
