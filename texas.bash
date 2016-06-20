@@ -50,6 +50,7 @@ texas()
             tmux next-window
         fi
     }
+    bind -x '"\C-o":"texas--switch-to-ranger"'
 }
 
 if [ -n "$LAUNCH_TEXAS" ]; then
