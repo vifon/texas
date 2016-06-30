@@ -12,10 +12,21 @@ feature known as `ShowCommandLine` (which is bound to
 INSTALLATION
 ------------
 
-The installation is comprised of two steps: installing a `ranger`
-plugin and installing a shell plugin.
+TL;DR: Run `./install.sh`. You don't need to read any further if
+you're not interested what does it actually it.
 
-**Step 1: Install ranger plugin** (mandatory)
+Currently there is no support for the plugin managers such as
+[antigen](https://github.com/zsh-users/antigen) due to a bit tricky
+loading process. If you use them, be sure to load `texas` after
+loading the plugins managed by the manager. I've encountered some
+strange hard to track issues otherwise.
+
+**INSTALLATION DETAILS**
+
+The installation is comprised of two steps: installing a `ranger`
+plugin and installing a shell plugin. Both are mandatory.
+
+**Step 1: Install ranger plugin**
 
 Copy `texas.py` to `~/.config/ranger/plugins`.
 
@@ -32,11 +43,6 @@ First copy the file `texas.zsh` to your `$fpath` and rename it to just
 `texas` (remove the `.zsh` suffix). After that, source the
 `texas_init.zsh` file by adding the line `source
 /path/to/texas_init.zsh` to your `.zshrc`.
-
-Currently there is no support for the plugin managers such as
-[antigen](https://github.com/zsh-users/antigen) due to a bit tricky
-loading process. If you use them, be sure to load `texas` after
-loading the plugins managed by the manager.
 
 USAGE
 -----
