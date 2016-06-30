@@ -48,9 +48,9 @@ trap texas--ranger-to-sh-sync USR1
 local TEXAS_SWITCH_COMMAND
 TEXAS_SWITCH_COMMAND=$(cat <<'EOF'
 if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
-    tmux select-pane -t :.+;
+    tmux select-pane -t :.+
 else
-    tmux next-window;
+    tmux next-window
 fi
 EOF
 )
