@@ -68,16 +68,19 @@ intact.
 
 **Switching windows**
 
-You may use <kbd>ctrl-o</kbd> to switch between windows as long as
-there is no other program running in the shell window (for example, it
-will not work if you've got Vim running there), but the `tmux` keys
-for switching windows will work regardless of that (please refer to
-the `tmux` manual). <kbd>ctrl-o</kbd> has one advantage though (other
-than being shorter): it will work even if you move one of the `tmux`
-panes to a separate `tmux` window.
+You may use <kbd>ctrl-o</kbd> to switch between windows, like in
+Midnight Commander. The regular `tmux` keys for switching windows will
+work too (please refer to the `tmux` manual). <kbd>ctrl-o</kbd> has
+one advantage though (other than being shorter): it will work even if
+you move one of the `tmux` panes to a separate `tmux` window (for
+example with the `:break-pane` `tmux` command) as it intelligently
+switches either to a second split or a second window.
 
 Before `v1.0` it was supported only in `zsh`. Since `v1.0` it works in
 `bash` too.
+
+Since `v1.1` <kbd>ctrl-o</kbd> is bound in `tmux` itself. Before that
+it was handled by `bash`/`zsh` and `ranger`.
 
 DEPENDENCIES
 ------------

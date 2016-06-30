@@ -52,7 +52,17 @@ texas()
             tmux next-window
         fi
     }
-    bind -x '"\C-o":"texas--switch-to-ranger"'
+
+    local TEXAS_SWITCH_COMMAND
+    TEXAS_SWITCH_COMMAND=$(cat <<'EOF'
+if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
+    tmux select-pane -t :.+;
+else
+    tmux next-window;
+fi
+EOF
+)
+    tmux bind -n C-o run -b "$TEXAS_SWITCH_COMMAND"
 }
 
 if [ -n "$LAUNCH_TEXAS" ]; then

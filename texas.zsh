@@ -20,9 +20,6 @@ texas--sh-to-ranger-sync() {
         # The ranger's PID is no longer needed.
         unset TEXAS_RANGER_PID
 
-        # TODO: save the original binding instead of hardcoding the assumed default.
-        bindkey "^o" accept-line-and-down-history
-
         # Remove the hook because there is no ranger to communicate with.
         chpwd_functions=${chpwd_functions:#texas--sh-to-ranger-sync}
     fi
@@ -48,12 +45,13 @@ texas--ranger-to-sh-sync() {
 trap texas--ranger-to-sh-sync USR1
 
 
-texas--switch-to-ranger() {
-    if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
-        tmux select-pane -t :.+
-    else
-        tmux next-window
-    fi
-}
-zle -N texas--switch-to-ranger
-bindkey "^o" texas--switch-to-ranger
+local TEXAS_SWITCH_COMMAND
+TEXAS_SWITCH_COMMAND=$(cat <<'EOF'
+if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
+    tmux select-pane -t :.+;
+else
+    tmux next-window;
+fi
+EOF
+)
+tmux bind -n C-o run -b "$TEXAS_SWITCH_COMMAND"

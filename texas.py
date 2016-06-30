@@ -33,9 +33,6 @@ def hook_init(fm):
             signal.SIGUSR1,
             sh_to_ranger_sync)
 
-        # Bind to C-o
-        fm.execute_console("""map <C-o> shell -s if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then tmux select-pane -t :.+; else tmux next-window; fi""")
-
         # If a new tmux session needed to be created i.e. texas wasn't
         # started from inside of tmux.
         if int(os.environ['LAUNCH_TEXAS']):
