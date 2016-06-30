@@ -26,6 +26,10 @@ strange hard to track issues otherwise.
 The installation is comprised of two steps: installing a `ranger`
 plugin and installing a shell plugin. Both are mandatory.
 
+An unattended installation may be performed like this:
+
+    $ yes | ./install.sh
+
 **Step 1: Install ranger plugin**
 
 Copy `texas.py` to `~/.config/ranger/plugins`.
