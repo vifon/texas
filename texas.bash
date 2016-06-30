@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-if ! command -v ranger &> /dev/null && ! command -v tmux &> /dev/null; then
+if ! command -v ranger &> /dev/null || ! command -v tmux &> /dev/null; then
     return 1
 fi
 
