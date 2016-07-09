@@ -8,6 +8,21 @@ fi
 
 TEXAS_RANGER_PID=$(tmux split-window -p 70 -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
 
+# Do not bind a key in a non-dedicated tmux daemon. Tmux binds are
+# global per daemon so that would contaminate the user environment.
+if [ "$LAUNCH_TEXAS" = 1 ]; then
+    local TEXAS_SWITCH_COMMAND
+    TEXAS_SWITCH_COMMAND=$(cat <<'EOF'
+if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
+    tmux select-pane -t :.+
+else
+    tmux next-window
+fi
+EOF
+)
+    tmux bind -n C-o run -b "$TEXAS_SWITCH_COMMAND"
+fi
+
 # Unset the variable only here because the ranger plugin reacts to it.
 unset LAUNCH_TEXAS
 
@@ -43,15 +58,3 @@ texas--ranger-to-sh-sync() {
     fi
 }
 trap texas--ranger-to-sh-sync USR1
-
-
-local TEXAS_SWITCH_COMMAND
-TEXAS_SWITCH_COMMAND=$(cat <<'EOF'
-if [ "$(tmux display-message -p '#{window_panes}')" -gt 1 ]; then
-    tmux select-pane -t :.+
-else
-    tmux next-window
-fi
-EOF
-)
-tmux bind -n C-o run -b "$TEXAS_SWITCH_COMMAND"
