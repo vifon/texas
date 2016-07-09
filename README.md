@@ -13,7 +13,7 @@ INSTALLATION
 ------------
 
 TL;DR: Run `./install.sh`. You don't need to read any further if
-you're not interested what does it actually it.
+you're not interested what does it actually do.
 
 Currently there is no support for the plugin managers such as
 [antigen](https://github.com/zsh-users/antigen) due to a bit tricky
