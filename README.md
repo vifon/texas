@@ -97,6 +97,14 @@ Since `v1.2` <kbd>ctrl-o</kbd> is bound only when run in a new
 `tmux` daemon to prevent contaminating the all the other tmux sessions
 with this keybinding.
 
+CONFIGURATION
+-------------
+
+The followind environmental variables may be used to customize `texas`:
+
+- **TEXAS_CONFIG_NOSWAP=1** — display `ranger` below the shell instead
+  of on top of it
+
 DEPENDENCIES
 ------------
 

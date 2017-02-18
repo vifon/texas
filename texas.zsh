@@ -6,7 +6,12 @@ if [ -z "$TMUX" ]; then
     return
 fi
 
-TEXAS_RANGER_PID=$(tmux split-window -p 70 -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
+if [ "$TEXAS_CONFIG_NOSWAP" = 1 ]; then
+    TEXAS_RANGER_PID=$(tmux split-window -p 70 -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
+else
+    TEXAS_RANGER_PID=$(tmux split-window -p 30 -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
+    tmux swap-pane -D -d
+fi
 
 # Do not bind a key in a non-dedicated tmux daemon. Tmux binds are
 # global per daemon so that would contaminate the user environment.
