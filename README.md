@@ -103,9 +103,13 @@ CONFIGURATION
 The followind environmental variables may be used to customize `texas`:
 
 - **TEXAS_CONFIG_NOSWAP=1** — display `ranger` below the shell instead
-  of on top of it
+  of on top of it.
 - **TEXAS_CONFIG_SIZE=...** — customize the size of the `ranger` pane,
-  as percentage (default: 70)
+  as percentage (default: 70).
+- **TEXAS_CONFIG_TMUX_CONFIG** — an *additional* `tmux` config to
+  source after starting `texas`. Only used in a dedicated `tmux`
+  session, i.e. when `texas` is started from outside of an already
+  running `tmux`.
 
 DEPENDENCIES
 ------------

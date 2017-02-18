@@ -29,6 +29,7 @@ fi
 EOF
 )
     tmux bind -n C-o run -b "$TEXAS_SWITCH_COMMAND"
+    [ -f "$TEXAS_CONFIG_TMUX_CONFIG" ] && tmux source "$TEXAS_CONFIG_TMUX_CONFIG"
 fi
 
 # Unset the variable only here because the ranger plugin reacts to it.
