@@ -34,7 +34,9 @@ else
 fi
 EOF
 )
-        tmux bind -n C-o run -b "$TEXAS_SWITCH_COMMAND"
+        [ -z "$TEXAS_CONFIG_SWITCH_KEY" ] && TEXAS_CONFIG_SWITCH_KEY="C-o"
+        tmux bind -n "$TEXAS_CONFIG_SWITCH_KEY" run -b "$TEXAS_SWITCH_COMMAND"
+
         [ -f "$TEXAS_CONFIG_TMUX_CONFIG" ] && tmux source "$TEXAS_CONFIG_TMUX_CONFIG"
     fi
 

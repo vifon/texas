@@ -110,6 +110,9 @@ The followind environmental variables may be used to customize `texas`:
   source after starting `texas`. Only used in a dedicated `tmux`
   session, i.e. when `texas` is started from outside of an already
   running `tmux`.
+- **TEXAS_CONFIG_SWITCH_KEY** — a `tmux` key to be bound in a
+  dedicated `tmux` session for the pane switching (default:
+  <kbd>C-o</kbd>)
 
 DEPENDENCIES
 ------------
