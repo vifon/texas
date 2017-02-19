@@ -128,6 +128,12 @@ If used with `bash`, each time `ranger` changes its current directory
 a new prompt line will be shown in `bash`. It will erase the contents
 of the command line and may be seen as ugly.
 
+In `tmux 2.1` with `TEXAS_CONFIG_NOSWAP=0` the wrong pane is being
+focused. It can be fixed by manually adding `-d` to the `tmux
+swap-pane` call. I've detected this behavior only in `tmux 2.1`. In
+both `2.0` and `2.2` `-d` causes the exactly opposite effect, so it
+seems to be a bug in `tmux 2.1`.
+
 SEE ALSO
 --------
 
