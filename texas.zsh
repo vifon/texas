@@ -11,8 +11,7 @@ fi
 if [ "$TEXAS_CONFIG_NOSWAP" = 1 ]; then
     TEXAS_RANGER_PID=$(tmux split-window -p "$TEXAS_CONFIG_SIZE" -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
 else
-    TEXAS_CONFIG_SIZE=$((100 - TEXAS_CONFIG_SIZE))
-    TEXAS_RANGER_PID=$(tmux split-window -p "$TEXAS_CONFIG_SIZE" -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
+    TEXAS_RANGER_PID=$(tmux split-window -p "$((100 - TEXAS_CONFIG_SIZE))" -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
     tmux swap-pane -D
 fi
 
