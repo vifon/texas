@@ -113,6 +113,9 @@ The followind environmental variables may be used to customize `texas`:
 - **TEXAS_CONFIG_SWITCH_KEY** — a `tmux` key to be bound in a
   dedicated `tmux` session for the pane switching (default:
   <kbd>C-o</kbd>)
+- **TEXAS_CONFIG_HORIZONTAL** - start tmux with `-h` flag thus
+  making split horizontal instead of vertical (default). Set to
+  "1" to enable.
 
 DEPENDENCIES
 ------------
