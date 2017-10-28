@@ -8,10 +8,13 @@ fi
 
 [ -z "$TEXAS_CONFIG_SIZE" ] && TEXAS_CONFIG_SIZE=70
 
+local TEXAS_ADDITIONAL_FLAGS=()
+[ "$TEXAS_CONFIG_HORIZONTAL" = 1 ] && TEXAS_ADDITIONAL_FLAGS+=("-h")
+
 if [ "$TEXAS_CONFIG_NOSWAP" = 1 ]; then
-    TEXAS_RANGER_PID=$(tmux split-window -p "$TEXAS_CONFIG_SIZE" -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
+    TEXAS_RANGER_PID=$(tmux split-window $TEXAS_ADDITIONAL_FLAGS -p "$TEXAS_CONFIG_SIZE" -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
 else
-    TEXAS_RANGER_PID=$(tmux split-window -p "$((100 - TEXAS_CONFIG_SIZE))" -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
+    TEXAS_RANGER_PID=$(tmux split-window $TEXAS_ADDITIONAL_FLAGS -p "$((100 - TEXAS_CONFIG_SIZE))" -P -F '#{pane_pid}' "LAUNCH_TEXAS=$LAUNCH_TEXAS TEXAS_SHELL_PID=$$ ranger")
     tmux swap-pane -D
 fi
 
