@@ -1,3 +1,4 @@
+#!/bin/zsh
 # -*- sh -*-
 
 # Start a new tmux session with texas inside.
